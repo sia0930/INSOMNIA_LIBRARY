@@ -129,11 +129,11 @@ The conversation ends there. The word box... and three names hidden somewhere.
 As you swipe the card you hear an affirmative beep.
 The door slides away automatically, revealing a deep darkness beyond.
 
-You're free.
+<glow>You're free.</glow>
 
 As you step through the threshold, the nightmare you've been trapped in each night fades away.
 
-''You wake up.''
+<strong>''You wake up.''</strong>
 
 </div>
 <div class="ending-menu">
@@ -191,10 +191,10 @@ Written on the floor beneath them: //"The librarians of Computer Science. At lea
 
 Each has a button on the back of its head.
 
-* [[Librarian A — "There is exactly 1 truth-teller among us. The printing room has 6 computers."->FigA]]
-* [[Librarian B — "There are exactly 2 truth-tellers among us. The printing room has less than 6 computers."->FigB]]
-* [[Librarian C — "There are exactly 2 liars among us. The printing room has 5 computers."->FigC]]
-* [[Librarian D — "There are exactly 8 computers in the printing room."->FigD]]
+* [[Librarian A — "There are exactly 6 study rooms."->FigA]]
+* [[Librarian B — "There are more than 6 study rooms."->FigB]]
+* [[Librarian C — "Exactly one of us is lying."->FigC]]
+* [[Librarian D — "Librarian C is wrong."->FigD]]
 
 [[← Go back->Room]]
 <</if>>
@@ -210,32 +210,8 @@ What do you examine?
 * [[The exit door->Door]]
 * [[The bookshelf->Bookshelf]]
 * [[The computer->Computer]]
-* [[The safe->Safe]]
 * [[The librarian figurines->Librarians]]
 * [[The word box->WordBox]]
-
-
-:: Safe {"position":"1050,200","size":"100,100"}
-A small safe on the floor. It needs a ''4-digit code''.
-
-//The code might be hidden somewhere in the real Somni Library…//
-
-<<if not $safeOpen>>
-Code: <<textbox "$safeCode" "" autofocus>>
-
-<<button "Open">>
-  <<if $safeCode is "1984">>
-    <<set $safeOpen to true>>
-    <<goto "Safe">>
-  <<else>>
-    The safe remains locked. The code must be hidden elsewhere.
-  <</if>>
-<</button>>
-<<else>>
-The safe is open. Inside was a folded note: //"The word box holds the answer you seek. Three names, hidden in the grid."//
-<</if>>
-
-[[← Go back->Room]]
 
 
 :: ShelfBook1Art {"position":"1425,325","size":"100,100"}
@@ -341,7 +317,7 @@ This is the [[Somni Library->Room]], a place out of time, born from unconsciousn
 
 
 :: StartPage {"position":"175,200","size":"100,100"}
-<div>
+<div class="start-screen">
 	<div class="title">SOMNI LIBRARY</div>
 
 	<div class="menu">
@@ -395,13 +371,10 @@ body {
 }
 
 #passages {
-  display: flex;
-  justfify-content: center;
-  align-items: center;
-  height: 100vh;
-  text-align: center;
+  max-width: 900px;
+  margin: 0 auto;
+  min-height: 100vh;
 }
-
 
 #ui-bar {
   display: none;
@@ -409,6 +382,24 @@ body {
 
 #passages {
   animation: fadein 1s ease;
+}
+
+.start-screen {
+  width: 100vw;
+  min-height: 100vh;
+
+  margin: 0;
+  padding: 0;
+
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+
+  background-image:url("https://raw.githubusercontent.com/sia0930/INSOMNIA_LIBRARY/Resource/SomniLibraryBackground.png");
+  background-size:cover;
+  background-position:center;
+  background-repeat:no-repeat;
 }
 
 .title {
@@ -440,22 +431,44 @@ body {
 
 .ending{
   max-width: 700px;
-  margin: 0auto;
-  margin-top 120px;
-  text-align: center;
+  margin: 80px auto;
+  margin-top: 20px;
   font-size: 20px;
   line-height: 1.5;
-  color: #392c5c
+  color: #ddd;
     
   animation: fadein 2s ease;
 }
 
 .ending-menu{
-  display: inline-block;
-  padding: 12px 30px;
-  border: 1px solid #888;
+  margin-top: 60px;
+}
+
+.ending-menu a{
+  padding: 8px 20px;
+  border: 1px solid #666;
   color: #ccc;
   text-decoration: none;
+}
+
+.ending-menu a:hover{
+  background-color: #333;
+  color: white;
+}
+.ending .glow{
+  color: white;
+  font-size: 20px;
+  text-shadow:
+    0 0 25px #5d1e69;
+}
+
+.ending strong{
+  color: white;
+  font-size: 22px;
+  text-shadow:
+    0 0 10px #5d1e69,
+    0 0 25px #25092A,
+    0 0 40px #25092A;
 }
 
 @keyframes fadein {
