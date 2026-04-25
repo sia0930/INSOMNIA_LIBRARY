@@ -191,10 +191,10 @@ Written on the floor beneath them: //"The librarians of Computer Science. At lea
 
 Each has a button on the back of its head.
 
-* [[Librarian A — "There are exactly 6 study rooms."->FigA]]
-* [[Librarian B — "There are more than 6 study rooms."->FigB]]
-* [[Librarian C — "Exactly one of us is lying."->FigC]]
-* [[Librarian D — "Librarian C is wrong."->FigD]]
+* [[Librarian A — "There is exactly 1 truth-teller among us. The printing room has 6 computers."->FigA]]
+* [[Librarian B — "There are exactly 2 truth-tellers among us. The printing room has less than 6 computers."->FigB]]
+* [[Librarian C — "There are exactly 2 liars among us. The printing room has 5 computers."->FigC]]
+* [[Librarian D — "There are exactly 8 computers in the printing room."->FigD]]
 
 [[← Go back->Room]]
 <</if>>
