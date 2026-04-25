@@ -1,0 +1,464 @@
+:: StoryTitle
+IGC Library
+
+
+:: StoryData
+{
+  "ifid": "D9B2C4A1-3F8E-4B72-A1C5-8E2D9F0B4C3A",
+  "format": "SugarCube",
+  "format-version": "1.0.35",
+  "start": "StartPage",
+  "zoom": 1
+}
+
+
+:: Bookshelf {"position":"800,325","size":"100,100"}
+<<if not $hasBookshelfKey>>
+The bookshelf is behind a sheet of glass. The glass door has a small keyhole in the frame.
+
+//You'll need a key to open this.//
+
+[[← Go back->Room]]
+<<else>>
+You unlock the glass door with the key, giving you access to the books inside.
+
+Six shelves (left to right): ''General Works, Philosophy & Psychology, Natural Science, Technology, Art, Language.''
+
+Books to sort:
+
+<<if not $shelf1>>
+A yellow-spined book appears: //"Put me in the correct shelf."//
+Where does it go?
+
+* [[General Works->ShelfBook1GW]] | [[Philosophy & Psych->ShelfBook1PP]] | [[Natural Science->ShelfBook1NS]] | [[Technology->ShelfBook1Tech]] | [[Art->ShelfBook1Art]] | [[Language->ShelfBook1Lang]]
+<<elseif not $shelf2>>
+A white book: //"James Bond with code name ###"//
+Where does it go?
+
+* [[General Works->ShelfBook2GW]] | [[Philosophy & Psych->ShelfBook2PP]] | [[Natural Science->ShelfBook2NS]] | [[Technology->ShelfBook2Tech]] | [[Art->ShelfBook2Art]] | [[Language->ShelfBook2Lang]]
+<<elseif not $shelf3>>
+A blue and yellow book: //"Which language do you speak?"//
+Where does it go?
+
+* [[General Works->ShelfBook3GW]] | [[Philosophy & Psych->ShelfBook3PP]] | [[Natural Science->ShelfBook3NS]] | [[Technology->ShelfBook3Tech]] | [[Art->ShelfBook3Art]] | [[Language->ShelfBook3Lang]]
+<<else>>
+All books correctly shelved! The shelves tremble and something falls to the floor —
+
+''Your student ID card!'' It must have been hidden between the books.
+
+<<set $hasStudentId to true>>
+
+✦ //You acquired the Student ID!//
+
+[[← Go back->Room]]
+<</if>>
+<</if>>
+
+
+:: Computer {"position":"800,200","size":"100,100"}
+<<if not $computerUnlocked>>
+A small laptop on the study room's desk. The screen shows it's locked — profile: ''User005.133''. There's a password field below.
+
+Hint left by the user: //"Just try to simplify. Simple like a cup of coffee."//
+
+The Dewey Decimal system… perhaps the password relates to a book's call number.
+
+Password: <<textbox "$password" "" autofocus>>
+
+<<button "Unlock">>
+  <<if $password is "M849s" or $password is "M849S">>
+    <<set $computerUnlocked to true>>
+    <<goto "Computer">>
+  <<else>>
+    Incorrect. Remember: //"Just try to simplify. Simple like a cup of coffee."//
+  <</if>>
+<</button>>
+<<else>>
+The computer is open. There's an email application and a sparse desktop.
+
+[[Open the email->Email]] | [[Close the computer->Room]]
+<</if>>
+
+[[← Go back->Room]]
+
+
+:: Door {"position":"550,200","size":"100,100"}
+The door is sturdy and wooden with no visible handle. It appears to slide in and out on an unseen track. Next to it is a small card reader where a student ID could be swiped.
+
+<<if $hasStudentId>>
+You have your student ID. 
+
+[[Swipe the card->Escape]] | [[← Go back->Room]]
+<<else>>
+//You don't have a card you could use here.//
+
+[[← Go back->Room]]
+<</if>>
+
+
+:: Email {"position":"925,200","size":"100,100"}
+There is only one conversation in the inbox — an exchange between three users.
+
+<div style="background:#e8ddc8;border:1px solid #d4c9b0;border-radius:4px;padding:1.25rem;margin:0.75rem 0;font-size:0.9rem;line-height:1.9;">
+''Robert:'' Where is the third librarian
+''Martin:'' What?
+''Robert:'' The little figurine.
+''Cecil:'' Which one?
+''Robert:'' God, do you people not listen? The third one. Librarian C.
+''Martin:'' Ohhhh
+''Cecil:'' I thought you had it, Robby?
+''Robert:'' Obviously not. That's why I'm asking you guys.
+''Martin:'' I left it in the box for safe keeping.
+''Robert:'' And what was the code?
+''Martin:'' Something thematic. One that all three of us could figure out together.
+''Cecil:'' huh?
+''Martin:'' Think about it. Try to put our heads together and think it through.
+''Robert:'' I get it.
+''Cecil:'' HUH????
+''Martin:'' Try to find the three of us on the bookshelf, genius.
+</div>
+
+The conversation ends there. The word box... and three names hidden somewhere.
+
+[[← Go back->Computer]]
+
+
+:: Escape {"position":"900,600","size":"100,100"}
+<div class="ending">
+
+As you swipe the card you hear an affirmative beep.
+The door slides away automatically, revealing a deep darkness beyond.
+
+You're free.
+
+As you step through the threshold, the nightmare you've been trapped in each night fades away.
+
+''You wake up.''
+
+</div>
+<div class="ending-menu">
+[[Return to SOMNI LIBRARY->StartPage]]
+</div>
+
+
+:: FigA {"position":"1300,200","size":"100,100"}
+You press the button on Librarian A's head. With a soft click, the head swings off on its hinge, revealing a small cavity inside.
+
+Inside is a tiny brass key. A tag reads: ''«Bookshelf Key»''
+
+<<set $hasBookshelfKey to true>>
+
+✦ //You acquired the Bookshelf Key!//
+
+[[← Back to figurines->Librarians]]
+
+
+:: FigB {"position":"1425,200","size":"100,100"}
+You press the button on Librarian B's head. Nothing happens. The figurine stares back at you impassively.
+
+//Perhaps this isn't the truth-teller…//
+
+[[← Back to figurines->Librarians]]
+
+
+:: FigC {"position":"300,325","size":"100,100"}
+You press the button on Librarian C's head. Nothing happens. The figurine stares back at you impassively.
+
+//Perhaps this isn't the truth-teller…//
+
+[[← Back to figurines->Librarians]]
+
+
+:: FigD {"position":"425,325","size":"100,100"}
+You press the button on Librarian D's head. Nothing happens. The figurine stares back at you impassively.
+
+//Perhaps this isn't the truth-teller…//
+
+[[← Back to figurines->Librarians]]
+
+
+:: Librarians {"position":"1175,200","size":"100,100"}
+<<if not $wordBoxSolved or not $hasLibrarianC>>
+The figurines sit on the floor — ''A'', ''B'', and ''D''. Figurine ''C'' is conspicuously absent.
+
+//With Library Figurine C absent, you can't fully solve this puzzle yet. The word box in the corner might reveal where Librarian C has been hidden...//
+
+[[Go to the word box →->WordBox]] | [[← Go back->Room]]
+<<else>>
+All four figurines are present on the floor — ''A'', ''B'', ''C'', and ''D''.
+
+Written on the floor beneath them: //"The librarians of Computer Science. At least one of them is lying. Choose one of them that is telling the truth."//
+
+Each has a button on the back of its head.
+
+* [[Librarian A — "There are exactly 6 study rooms."->FigA]]
+* [[Librarian B — "There are more than 6 study rooms."->FigB]]
+* [[Librarian C — "Exactly one of us is lying."->FigC]]
+* [[Librarian D — "Librarian C is wrong."->FigD]]
+
+[[← Go back->Room]]
+<</if>>
+
+
+:: Room {"position":"425,200","size":"100,100"}
+The study room stretches around you. The smell of dust is overwhelming.
+
+Behind you is an exit door. In front of you are wall-to-wall bookcases with blank books. On a desk sits a small computer. In one corner is a safe; in the opposite corner, a wooden box like an armoire. Four librarian figurines huddle together on the floor — or should be four.
+
+What do you examine?
+
+* [[The exit door->Door]]
+* [[The bookshelf->Bookshelf]]
+* [[The computer->Computer]]
+* [[The safe->Safe]]
+* [[The librarian figurines->Librarians]]
+* [[The word box->WordBox]]
+
+
+:: Safe {"position":"1050,200","size":"100,100"}
+A small safe on the floor. It needs a ''4-digit code''.
+
+//The code might be hidden somewhere in the real Somni Library…//
+
+<<if not $safeOpen>>
+Code: <<textbox "$safeCode" "" autofocus>>
+
+<<button "Open">>
+  <<if $safeCode is "1984">>
+    <<set $safeOpen to true>>
+    <<goto "Safe">>
+  <<else>>
+    The safe remains locked. The code must be hidden elsewhere.
+  <</if>>
+<</button>>
+<<else>>
+The safe is open. Inside was a folded note: //"The word box holds the answer you seek. Three names, hidden in the grid."//
+<</if>>
+
+[[← Go back->Room]]
+
+
+:: ShelfBook1Art {"position":"1425,325","size":"100,100"}
+The book vanishes and reappears. That wasn't the right shelf.
+[[← Try again->Bookshelf]]
+
+
+:: ShelfBook1GW {"position":"925,325","size":"100,100"}
+<<set $shelf1 to true>>
+The book slides into place with a satisfying click. ✓
+
+[[← Back to bookshelf->Bookshelf]]
+
+
+:: ShelfBook1Lang {"position":"300,450","size":"100,100"}
+The book vanishes and reappears. That wasn't the right shelf.
+[[← Try again->Bookshelf]]
+
+
+:: ShelfBook1NS {"position":"1175,325","size":"100,100"}
+The book vanishes and reappears. That wasn't the right shelf.
+[[← Try again->Bookshelf]]
+
+
+:: ShelfBook1PP {"position":"1050,325","size":"100,100"}
+The book vanishes and reappears. That wasn't the right shelf.
+[[← Try again->Bookshelf]]
+
+
+:: ShelfBook1Tech {"position":"1300,325","size":"100,100"}
+The book vanishes and reappears. That wasn't the right shelf.
+[[← Try again->Bookshelf]]
+
+
+:: ShelfBook2Art {"position":"925,450","size":"100,100"}
+The book vanishes and reappears. That wasn't the right shelf.
+[[← Try again->Bookshelf]]
+
+
+:: ShelfBook2GW {"position":"425,450","size":"100,100"}
+The book vanishes and reappears. That wasn't the right shelf.
+[[← Try again->Bookshelf]]
+
+
+:: ShelfBook2Lang {"position":"1050,450","size":"100,100"}
+The book vanishes and reappears. That wasn't the right shelf.
+[[← Try again->Bookshelf]]
+
+
+:: ShelfBook2NS {"position":"675,450","size":"100,100"}
+The book vanishes and reappears. That wasn't the right shelf.
+[[← Try again->Bookshelf]]
+
+
+:: ShelfBook2PP {"position":"550,450","size":"100,100"}
+The book vanishes and reappears. That wasn't the right shelf.
+[[← Try again->Bookshelf]]
+
+
+:: ShelfBook2Tech {"position":"800,450","size":"100,100"}
+<<set $shelf2 to true>>
+The book slides into place with a satisfying click. ✓
+
+[[← Back to bookshelf->Bookshelf]]
+
+
+:: ShelfBook3Art {"position":"425,575","size":"100,100"}
+The book vanishes and reappears. That wasn't the right shelf.
+[[← Try again->Bookshelf]]
+
+
+:: ShelfBook3GW {"position":"1175,450","size":"100,100"}
+The book vanishes and reappears. That wasn't the right shelf.
+[[← Try again->Bookshelf]]
+
+
+:: ShelfBook3Lang {"position":"550,575","size":"100,100"}
+<<set $shelf3 to true>>
+The book slides into place with a satisfying click. ✓
+
+[[← Back to bookshelf->Bookshelf]]
+
+
+:: ShelfBook3NS {"position":"1425,450","size":"100,100"}
+The book vanishes and reappears. That wasn't the right shelf.
+[[← Try again->Bookshelf]]
+
+
+:: ShelfBook3PP {"position":"1300,450","size":"100,100"}
+The book vanishes and reappears. That wasn't the right shelf.
+[[← Try again->Bookshelf]]
+
+
+:: ShelfBook3Tech {"position":"300,575","size":"100,100"}
+The book vanishes and reappears. That wasn't the right shelf.
+[[← Try again->Bookshelf]]
+
+
+:: Start {"position":"300,200","size":"100,100"}
+You wake — or perhaps you sleep. The air smells of dust.
+
+This is the [[Somni Library->Room]], a place out of time, born from unconsciousness. Your psyche is trapped here in a small study room — and it will stay trapped until you find a way out.
+
+
+:: StartPage {"position":"175,200","size":"100,100"}
+<div>
+	<div class="title">SOMNI LIBRARY</div>
+
+	<div class="menu">
+		[[START GAME ->Start]]
+	</div>
+</div>
+
+
+:: WordBox {"position":"550,325","size":"100,100"}
+A box with several compartments, like an armoire. On the top of it is a grid of seemingly unrelated letters. On closer inspection it appears the columns and rows can be rotated to form five-letter words.
+
+The email mentioned three names — //Robert//, //Martin//, //Cecil//. Perhaps those names are the words hidden in this grid?
+
+
+Names found (separate with commas): <<textbox "$wbInput" "" autofocus>>
+
+<<button "Submit">>
+  <<if $wbInput.toUpperCase().includes("ROBERT") and $wbInput.toUpperCase().includes("MARTIN") and $wbInput.toUpperCase().includes("CECIL")>>
+    <<set $wordBoxSolved to true>>
+    <<set $hasLibrarianC to true>>
+    <<goto "WordBoxSolved">>
+  <<else>>
+    Those aren't the right names — keep looking.
+  <</if>>
+<</button>>
+
+<<if $wordBoxSolved>>
+The box is open. Figurine C rests in your hands.
+<</if>>
+
+[[← Go back->Room]]
+
+
+:: WordBoxSolved {"position":"675,325","size":"100,100"}
+The box clicks open! Inside, nestled in velvet, is Figurine C.
+
+''✦ You acquired Librarian C!''
+
+Now the figurine puzzle can be solved.
+
+[[Go to the librarian figurines ->Librarians]] | [[← Go back to room->Room]]
+
+
+:: StoryStylesheet [stylesheet]
+body {
+  background-color: #0b0b0d;
+  color: #d8d2c4;
+  font-family: "Georgia", "Times New Roman", serif;
+  font-size: 22px;
+  line-height: 1.7;
+}
+
+#passages {
+  display: flex;
+  justfify-content: center;
+  align-items: center;
+  height: 100vh;
+  text-align: center;
+}
+
+
+#ui-bar {
+  display: none;
+}
+
+#passages {
+  animation: fadein 1s ease;
+}
+
+.title {
+  font-size: 56px;
+  letter-spacing: 6px;
+  color: white;
+  text-shadow: 0 0 30px rgba(255,255,255,0.3);
+}
+
+.menu {
+  margin-top: 40px;
+}
+
+.menu a {
+  display: inline-block;
+  padding: 12px 30px;
+  margin: 10px;
+  border: 1px solid #888;
+  text-decoration: none;
+  color: #ccc;
+  transition: all 0.2s ease;
+}
+
+.menu a:hover {
+  background-color: #444;
+  color: white;
+  transform: scale(1.05);
+}
+
+.ending{
+  max-width: 700px;
+  margin: 0auto;
+  margin-top 120px;
+  text-align: center;
+  font-size: 20px;
+  line-height: 1.5;
+  color: #392c5c
+    
+  animation: fadein 2s ease;
+}
+
+.ending-menu{
+  display: inline-block;
+  padding: 12px 30px;
+  border: 1px solid #888;
+  color: #ccc;
+  text-decoration: none;
+}
+
+@keyframes fadein {
+from { opacity: 0; }
+to { opacity: 1; }
+}
