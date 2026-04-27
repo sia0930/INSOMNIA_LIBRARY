@@ -203,7 +203,19 @@ Remaining attempts: $librarianTries
 :: GameOver {"position":"400,25","size":"100,100"}
 Game Over.
 
-<<link "StartPage">>
+[[Restart->InitGame]]
+
+
+
+
+:: InitGame {"position":"500,25","size":"100,100"}
+<<set $librarianTries = 3>>
+<<set $wordboxTries = 3>>
+
+<<set $librarianSolved = false>>
+<<set $wordboxSolved = false>>
+
+<<goto "Start">>
 
 
 :: Librarians {"position":"600,450","size":"100,100"}
@@ -284,21 +296,19 @@ This is the [[Somni Library->Room]], a place out of time, born from unconsciousn
 
 
 :: StartPage {"position":"850,0","size":"100,100"}
-<div class="start-screen">
-	<div class="title">SOMNI LIBRARY</div>
-
-	<div class="menu">
-		[[START GAME ->Start]]
-	</div>
-</div>
-
-
-:: StoryInit {"position":"500,25","size":"100,100"}
 <<set $librarianTries = 3>>
 <<set $wordboxTries = 3>>
 
 <<set $librarianSolved = false>>
 <<set $wordboxSolved = false>>
+
+<div class="start-screen">
+	<div class="title">SOMNI LIBRARY</div>
+
+	<div class="menu">
+		[[START GAME ->InitGame]]
+	</div>
+</div>
 
 
 :: WordBox {"position":"725,450","size":"100,100"}
